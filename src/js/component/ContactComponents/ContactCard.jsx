@@ -5,13 +5,15 @@ import { useGlobalState } from "../../store/appContext";
 
 
 const ContactCard = ({ address, email, id, name, phone }) => {
-  const {store,actions:{deleteContact,fetchAgenda}}=useGlobalState()
+  const {store,actions:{showModalHandler,setContactToDelete}}=useGlobalState()
 
-  const navigate =useNavigate()
-  const deleteHandler=async(id)=>{
-    await deleteContact(id)
-    await fetchAgenda()
-  }
+  const handlerShowModal=({name,id})=>{
+    showModalHandler()
+    setContactToDelete({name,id})
+  } 
+
+ 
+ 
   
   const PHOTO_URL=`https://avatar.iran.liara.run/public/${id}`
   
@@ -25,7 +27,7 @@ const ContactCard = ({ address, email, id, name, phone }) => {
           <p className="m-0 nameText">{name}</p>
           <div   className="d-flex justify-content-between align-items-center flex-row ">
             <i   onClick={()=>navigate(`/contact/${id}`)} className="fa-solid fa-pen updateIcon"></i>
-            <i  onClick={()=>deleteHandler(id)} className="fa-solid fa-trash trashIcon"></i>
+            <i  onClick={()=>handlerShowModal({name,id})} className="fa-solid fa-trash trashIcon"></i>
           </div>
         </div>
         <div className="infoLine">
@@ -39,6 +41,7 @@ const ContactCard = ({ address, email, id, name, phone }) => {
         </div>
       </div>
     </div>
+    
   );
 };
 

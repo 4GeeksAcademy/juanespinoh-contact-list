@@ -19,7 +19,7 @@ const Layout = () => {
 	const basename = process.env.BASENAME || "";
 
 	return (
-		<div style={{minHeight:"100vh"}} className="bg-black text-white ">
+		<div style={{minHeight:"100vh" ,height:"auto"}} className="bg-black text-white ">
 			<BrowserRouter basename={basename}>
 				<ScrollToTop>
 					<Navbar />

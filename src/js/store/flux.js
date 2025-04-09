@@ -4,6 +4,8 @@ const getState = ({ getStore, getActions, setStore }) => {
   return {
     store: {
       contactList: [],
+      showModal:false,
+      contactToDelete:{name:"",id:0}
     },
     actions: {
       fetchAgenda: async () => {
@@ -81,6 +83,14 @@ const getState = ({ getStore, getActions, setStore }) => {
           console.log(error);
         }
       },
+
+      showModalHandler:(value)=>{
+        setStore({...getStore(), showModal:value?value :  !getStore().showModal})
+      },
+      setContactToDelete:(contact)=>{
+        
+        setStore({...getStore(),contactToDelete:contact})
+      }
     },
   };
 };
