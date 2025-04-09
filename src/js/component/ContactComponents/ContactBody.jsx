@@ -10,7 +10,7 @@ const ContactBody = () => {
 fetchAgenda()
   },[])
     return (
-    <div className='contactBody p-0 container-fluid d-flex flex-column'>
+    <div className='contactBody pb-5 pt-2 container-fluid d-flex flex-column gap-5'>
         {
             contactList.length !== 0 ? 
             contactList.map((elem)=>

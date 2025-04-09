@@ -6,8 +6,8 @@ export const Navbar = () => {
 		<nav className="navbar navbar-light bg-black border-bottom mb-3">
 
 			<div className="ml-auto ">
-				<Link to="/demo" className="align-self-end">
-					<button className="btn btn-primary">Check theee Context in action</button>
+				<Link to="/new-contact" className="align-self-end">
+					<button className="btn btn-primary">New Contact</button>
 				</Link>
 			</div>
 		</nav>

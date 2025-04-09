@@ -1,21 +1,45 @@
-import React from 'react'
-import "./ContactCardStyles.css"
+import React from "react";
+import "./ContactCardStyles.css";
+import { useNavigate } from "react-router-dom";
+import { useGlobalState } from "../../store/appContext";
 
-const ContactCard = ({address, email,id,name,phone}) => {
+
+const ContactCard = ({ address, email, id, name, phone }) => {
+  const {store,actions:{deleteContact,fetchAgenda}}=useGlobalState()
+
+  const navigate =useNavigate()
+  const deleteHandler=async(id)=>{
+    await deleteContact(id)
+    await fetchAgenda()
+  }
+  
+  const PHOTO_URL=`https://avatar.iran.liara.run/public/${id}`
+  
   return (
-    <div className='contactCardBody container-fluid'>
-        <div className="row"></div>
-        <div className="row">
-            <div className="col-1 p-0">
-                iconPLaceholder
-            </div>
-            <div className="col  p-0 justify-content-start"> {address}</div>
-            </div>
-        <div className="row">{phone}</div>
-        <div className="row">{email}</div>
-
+    <div className="contactCardBody py-2 m-0">
+      <div className="contactCardImage m-0 ">
+        <img  alt="photo img" src={PHOTO_URL} />
+      </div>
+      <div className="contactCardInfo m-0">
+        <div className="infoLine d-flex justify-content-between">
+          <p className="m-0 nameText">{name}</p>
+          <div   className="d-flex justify-content-between align-items-center flex-row ">
+            <i   onClick={()=>navigate(`/contact/${id}`)} className="fa-solid fa-pen updateIcon"></i>
+            <i  onClick={()=>deleteHandler(id)} className="fa-solid fa-trash trashIcon"></i>
+          </div>
+        </div>
+        <div className="infoLine">
+          <i className="fa-solid fa-location-dot ml-2"></i> <p className="">{address}</p> 
+        </div>
+        <div className="infoLine">
+          <i className="fa-solid fa-phone-flip ml-2"></i><p className="">{phone}</p>
+        </div>
+        <div className="infoLine">
+        <i className="fa-solid fa-envelope ml-2"></i><p className="">{email}</p>
+        </div>
+      </div>
     </div>
-  )
-}
+  );
+};
 
-export default ContactCard
+export default ContactCard;
