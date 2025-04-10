@@ -6,6 +6,7 @@ import { useGlobalState } from "../../store/appContext";
 
 const ContactCard = ({ address, email, id, name, phone }) => {
   const {store,actions:{showModalHandler,setContactToDelete}}=useGlobalState()
+  const navigate=useNavigate()
 
   const handlerShowModal=({name,id})=>{
     showModalHandler()
